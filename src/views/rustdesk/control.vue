@@ -19,8 +19,8 @@
     >
       <el-tab-pane :label="T('Simple')" name="Simple">
         <el-space wrap>
-          <RelayServers ref="rs" :can-send="canSendIdServerCmd"/>
-          <alwaysUseRelay :can-send="canSendIdServerCmd" @success="handleAlwaysUseRelaySuccess"/>
+          <RelayServers :can-send="canSendIdServerCmd"/>
+          <alwaysUseRelay :can-send="canSendIdServerCmd"/>
           <mustLogin :can-send="canControlMustLogin&&canSendIdServerCmd"/>
           <usage :can-send="canSendRelayServerCmd"/>
           <blocklist :can-send="canSendRelayServerCmd"/>
@@ -157,11 +157,6 @@
     checkCanSendRelayServerCmd()
   }
   onMounted(refreshCanSendRelayServerCmd)
-
-  const rs = ref(null)
-  const handleAlwaysUseRelaySuccess = () => {
-    rs.value.save()
-  }
 
   const canSendCmd = (target) => {
     if (target === ID_TARGET) {
